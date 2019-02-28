@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Hello World</title>
+    <script src="js/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <p>ddddd {{mes}} ffffff</p>
+        <!--会输出 ddddd 哈哈哈 ffffff-->
+        <p v-text='mes'>aaaaa</p>
+        <!--会输出 哈哈哈 ，并不会输出aaaaa-->
+        <p v-html="message"></p>
+        <!-- 使用 v-html 指令用于输出 html 代码： -->
+    </div>
+
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                message: '<h1>hello,world!</h1>',
+                mes: '哈哈哈'
+            }
+
+        })
+    </script>
+</body>
+
+</html>
