@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>事件修饰符</title>
+    <script src='js/vue.js'></script>
+</head>
+
+<body>
+    <!--阻止冒泡   由里往外-->
+    <!-- <div id='app' @click='divHandler'>
+        <input type='button' value='点击' @click.stop='btnHandler' />
+
+    </div> -->
+    <!--使用capture 实现捕捉   由外到里-->
+    <div id='app' @click.capture='divHandler'>
+        <input type='button' value='点击' @click.stop='btnHandler' />
+
+    </div>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {},
+            methods: {
+                divHandler() {
+                    console.log('div被点击了')
+                },
+                btnHandler() {
+                    console.log('input被单击了')
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
