@@ -17,21 +17,29 @@
                 <input type='text' class="form-control" placeholder="请输入编号" v-model='ipt1'/>
             </label>
             <label>
-                <input type='text' class="form-control" placeholder="请输入名称" v-model='ipt2'/>
+                <input type='text' class="form-control" placeholder="请输入名称" v-model='ipt2' @keyUp.enter='add'/>
             </label>
             <input type='button' class="btn btn-primary" value='添加' @click='add' />
+            <label>
+                <span>请输入要查询的品牌名称</span>
+                <input type='text' v-model='ipt3' v-focus v-color="'blue'"/>
+            </label>
+
         </div>
         <table class='table'>
             <tbody>
                 <tr>
                     <th>序号</th>
                     <th>名称</th>
+                    <th>时间</th>
                     <th>操作</th>
                 </tr>
-                <tr v-for="item in list">
+                <!-- 自定义一个search方法，同时，把所有关键字通过传参形式传递给search方法，在search方法内部，通过for循环，把所有符合搜索关键字的数据，存到一个新的数据中返回    search(keyword) -->
+                <tr v-for="item in search(keyword)" :key='item.id'>
                     <td>{{item.id}}</td>
                     <td>{{item.name}}</td>
-                    <td><a>{{item.opt}}</a></td>
+                    <td>{{item.date | newDate('yyyy-MM-dd') }}</td>
+                    <td><a href="" @click.prevent='del(item.id)'>{{item.opt}}</a></td>
                 </tr>
             </tbody>
         </table>
@@ -40,30 +48,136 @@
 
 
     <script>
+        //全局定义过滤器
+        Vue.filter('newDate', function(data, type) {
+            var dd = new Date(data);
+            //console.log(dd)
+            var y = dd.getFullYear();
+            var m = dd.getMonth() + 1;
+            var d = dd.getDate()
+            if (type.toLowerCase() === 'yyyy-mm-dd') {
+                return `${y}-${m}-${d}`
+            } else {
+                var hh = dd.getHours();
+                var mm = dd.getMinutes();
+                var ss = dd.getSeconds();
+                return `${y}-${m}-${d} ${hh}:${mm}:${ss}`
+            }
+        })
+
+        //全局定义按键修饰符
+        //Vue.config.keyCode.f12 = 113
+
+        //全局定义指令
+        Vue.directive('focus', {
+            bind: function(el) { //每当指令绑定在元素上时，就会调用这个函数，只执行一次
+
+            },
+            inserted: function(el) {
+                el.focus()
+            },
+            update: function(el) {
+
+            }
+        })
+
+        Vue.directive('color', {
+            bind: function(el, binding) {
+                el.style.color = binding.value
+            },
+            inserted: function(el) {},
+            update: function(el) {}
+        })
+
+
         var vm = new Vue({
             el: '#app',
             data: {
                 ipt1: '',
                 ipt2: '',
+                ipt3: '',
+                keyword: '',
                 list: [{
                     id: 1,
                     name: '宝马',
+                    date: new Date(),
                     opt: '删除'
                 }, {
                     id: 2,
                     name: '奔驰',
+                    date: new Date(),
                     opt: '删除'
                 }, {
                     id: 3,
                     name: '大众',
+                    date: new Date(),
                     opt: '删除'
                 }, ]
             },
             methods: {
                 add() {
+                    return this.list.push({
+                        id: this.ipt1,
+                        name: this.ipt2,
+                        date: new Date(),
+                        opt: '删除'
+                    })
+                },
+                del(id) {
+                    //或者用some方法
+                    //this.list.some() 测试数组中至少有一项通过测试
+                    // this.list.some((item, i) => {
+                    //         if (item.id == id) {
+                    //             this.list.splice(i, 1)
+                    //             return true
+                    //         }
+                    //     })
+                    //forEach方法
+                    // this.list.forEach(item => {
+                    //     if (item.id == id) {
+                    //         return this.list.splice(id - 1, 1)
+                    //     }
+                    // })
+                    //findIndex方法
+                    var index = this.list.findIndex(item => {
+                        if (item.id == id) {
+                            return true
+                        }
+                    })
+                    this.list.splice(index, 1)
+                },
+
+                search(keyword) {
+                    //debugger;
+                    //可以用forEach方法
+                    var newList = []
+                    this.list.forEach(item => {
+                        if (item.name.indexOf(this.ipt3) != -1) {
+                            newList.push(item)
+                        }
+                    });
+                    return newList
+
+                    //可以用filter方法
+
+                    // return this.list.filter(item => {
+                    //     //ES6提供了字符串方法 includes()
+                    //     if (item.name.includes(keyword)) {
+                    //         return item
+                    //     }
+                    // })
+
+
+
 
                 }
             }
+            // filters: {
+            //     newDate(data) {
+            //         //console.log(data)
+            //         return data.toLocaleDateString()
+            //     }
+            // }
         })
     </script>
 </body>
