@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue动画之第三方动画</title>
+    <script src='js/vue.js'></script>
+    <link rel='stylesheet' href='css/animate.css' />
+
+</head>
+
+<body>
+    <div id="app">
+        <input type='button' value='toggle' @click='flag=!flag' />
+        <!-- vue提供了transition 组件可以在  
+            条件渲染 (使用 v-if)
+            条件展示 (使用 v-show)
+            动态组件
+            组件根节点
+        添加进入移出过渡
+        -->
+        <!-- 使用   :duration='毫秒值'   来统一设置入场和离场时候的动画时长 -->
+        <!-- <transition enter-active-class='animated wobble' leave-active-class='animated bounceOut' :duration='200'>
+            <h3 v-show='flag'>这是一个H3</h3>
+        </transition> -->
+        <!-- 也可以分别设置 -->
+        <transition enter-active-class='animated wobble' leave-active-class='animated bounceOut' :duration='{enter:200,leave:400}'>
+            <h3 v-show='flag'>这是一个H3</h3>
+        </transition>
+        <hr>
+
+
+
+        <input type='button' value='toggle' @click='flag2=!flag2' />
+        <transition enter-active-class='wobble' leave-active-class='bounceOut'>
+            <h4 v-show='flag2' class='animated'>这是一个H4</h4>
+        </transition>
+
+    </div>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                flag: false,
+                flag2: false
+            },
+            methods: {}
+        })
+    </script>
+</body>
+
+</html>
