@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>组件创建</title>
+    <script src='js/vue.js'></script>
+</head>
+
+<body>
+    <div id="app">
+        <mycom4></mycom4>
+    </div>
+    <!-- 在被绑定元素之外写template模板 -->
+    <template id='tpl'>
+      <div>
+          <h3>1111</h3>
+          <h3>1111</h3>
+          <h3>1111</h3> 
+      </div>
+      
+    </template>
+    <script>
+        var vm = new Vue({
+            el: "#app",
+            data: {},
+            methods: {},
+            components: {
+                mycom4: {
+                    template: '#tpl'
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
