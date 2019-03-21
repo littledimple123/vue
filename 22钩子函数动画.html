@@ -43,6 +43,7 @@
                     done()
                 },
                 afterEnter(el) {
+                    //第一个功能，是控制小球的显示和隐藏；第二个功能：直接跳过后半场动画，让flag标识符直接变成false
                     this.flag = !this.flag
                 }
             }
