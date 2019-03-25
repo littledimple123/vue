@@ -12,7 +12,7 @@
 
 <body>
     <div id="app">
-        <cheader></cheader>
+        <cheader @postmsg="loadlists"></cheader>
 
         <ul class="list-group">
             <li class="list-group-item" v-for='list in lists' :key='list.id'>
@@ -52,29 +52,39 @@
                     //2.localstorage只支持字符串数据，需调用JSON.stringify
                     //3.在保存新评论之前要先获取localstorage中之前的评论，转换为对象，然后push到这个数据中。如果获取到的localstorage中评论为空不存在，可以返回[],让JSON.parse()转换
                     //4.把最新的评论列表数据，再次调用JSON.stringify转为数组字符串，然后调用localstorage.setItem()
+                    var com = {
+                            id: Date.now(),
+                            name: this.person,
+                            content: this.content
+                        }
+                        //从localStorage 获取评论
+                    var list = JSON.parse(localStorage.getItem('cmy') || '[]')
+                        //添加的评论添加到list中
+                    list.unshift(com)
+                        //在把数组放到 localStorage 中
+                    localStorage.setItem('cmy', JSON.stringify(list))
+                    this.person = this.content = ''
+                    this.$emit('postmsg')
                 }
             }
+
         }
 
 
         var vm = new Vue({
             el: '#app',
             data: {
-                lists: [{
-                    id: Date.now(),
-                    name: "李白1",
-                    content: "1天生我才必有用"
-                }, {
-                    id: Date.now(),
-                    name: "李白2",
-                    content: "2天生我才必有用"
-                }, {
-                    id: Date.now(),
-                    name: "李白3",
-                    content: "3天生我才必有用"
-                }, ]
+                lists: []
             },
-            methods: {},
+            created() {
+                this.loadlists()
+            },
+            methods: {
+                loadlists() {
+                    var list = JSON.parse(localStorage.getItem('cmy') || '[]')
+                    this.lists = list
+                }
+            },
             components: {
                 "cheader": comBox
             }

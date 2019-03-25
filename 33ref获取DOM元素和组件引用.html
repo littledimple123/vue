@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src='js/vue.js'></script>
+</head>
+
+<body>
+    <div id="app">
+        <input type='button' value='触发' @click="tmlclick" />
+        <!-- 组件引用ref -->
+        <com ref='mytmp'></com>
+        <div id="mydiv" ref='mydiv' @click='getElement'>123456</div>
+    </div>
+    <template id='tml'>
+      <div>组件内容</div>
+    </template>
+    <script>
+        var com = {
+            template: "#tml",
+            data() {
+                return {
+                    msg: "aaa"
+                }
+            }
+        }
+        var vm = new Vue({
+            el: '#app',
+            data: {},
+            methods: {
+                getElement() {
+                    console.log(this.$refs.mydiv.textContent)
+                },
+                tmlclick() {
+                    console.log(this.$refs.mytmp.msg)
+                }
+            },
+            components: {
+                com
+            }
+        })
+    </script>
+</body>
+
+</html>
