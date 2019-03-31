@@ -7,16 +7,47 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>路由</title>
     <script src='js/vue.js'></script>
+    <!-- 1、引入vue-router.js -->
     <script src='js/vue-router.js'></script>
 </head>
 
 <body>
-    <div id="app"></div>
+    <div id="app">
+        <!--由于是通过hash实现的，所以 href前面要加上#-->
+        <!-- <a href="#/login">登录</a>
+        <a href='#/register'>注册</a> -->
+        <!-- <router-link> 默认是 a 标签，可以通过tag 改变展示的标签-->
+        <router-link to='/login' tag='span'>登录</router-link>
+        <router-link to='/register'>注册</router-link>
+        <router-view></router-view>
+    </div>
     <script>
+        var login = {
+            template: "<h1>登录</h1>"
+        }
+        var register = {
+            template: "<h1>注册</h1>"
+        }
+
+        //2、定义路由 component组件 可以是Vue.extend() 创建的组件构造器，
+        // 或者，只是一个组件配置对象。
+        var routers = [{
+                path: '/login',
+                component: login
+            }, {
+                path: '/register',
+                component: register
+            }]
+            //3、创建router实例
+        var routerobj = new VueRouter({
+                routes: routers
+            })
+            //通过 router 属性是路由与 实例连接
         var vm = new Vue({
             el: '#app',
             data: {},
-            methods: {}
+            methods: {},
+            router: routerobj
         })
     </script>
 </body>
