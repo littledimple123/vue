@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src='js/vue.js'></script>
+
+</head>
+
+<body>
+    <div id="app">
+        <input type="text" v-model='firstinput'>+
+        <input type="text" v-model='secondinput'>=
+        <input type="text" v-model='fullinput'>
+    </div>
+    <script>
+        var vm = new Vue({
+            el: "#app",
+            data: {
+                firstinput: "",
+                secondinput: "",
+                fullinput: ""
+            },
+            methods: {},
+            watch: { //使用这个属性，可以监视data中指定数据的变化，然后触发这个watch中对应的函数
+                firstinput(newVal, oldVal) {
+                    this.fullinput = newVal + "--" + this.secondinput
+                },
+                secondinput(newVal, oldVal) {
+                    this.fullinput = this.firstinput + "--" + newVal
+                },
+            }
+        })
+    </script>
+</body>
+
+</html>
