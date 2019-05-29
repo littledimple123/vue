@@ -1,4 +1,4 @@
-# vueclidemo1
+# hello-world
 
 ## Project setup
 ```
