@@ -38,7 +38,7 @@ export default {
         var local = new BMap.LocalSearch(map, {
             renderOptions:{map: map}
         });
-        local.search('古北水镇');
+        local.search('故宫');
 
 
 

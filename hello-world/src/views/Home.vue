@@ -1,6 +1,5 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
+  <div class="home">        
     <HelloWorld v-bind:msg='msg1'/>
     <test1/>    
     <test2/>

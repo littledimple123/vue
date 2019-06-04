@@ -6,15 +6,17 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    increase:0
+    increase:0,
+    
+    
   },
+  //点击 改变increase的状态
   mutations: {
     increment(state){
-      state.increase++
+      state.increase++   
     }
   },
-  actions: {
+ 
 
-  },
-  plugins:['createPersistedState']
+  plugins:[createPersistedState({})]
 })

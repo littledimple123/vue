@@ -1,10 +1,10 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      
-    </div>
+    <div id="nav"></div>
+    <router-link to="/login">跳转Login</router-link> ||
+    <router-link to="/dingweiMap">跳转定位地图</router-link>
     <router-view/>
+    
   </div>
 </template>
 
