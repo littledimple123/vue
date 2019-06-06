@@ -13,6 +13,8 @@ Vue.use(ElementUI)
 Vue.use(VCharts)
 Vue.config.productionTip = false
 
+window.router=router
+
 new Vue({
   router,
   store,

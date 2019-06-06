@@ -1,5 +1,5 @@
 //const path = require('path')
-
+//const TerserPlugin = require('terser-webpack-plugin');
 module.exports = {
     css: {
       loaderOptions: {
@@ -16,6 +16,7 @@ module.exports = {
         "BMap": "BMap"
       }
     }
+ 
 
 
 

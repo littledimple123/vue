@@ -11,7 +11,8 @@ export default {
   name: 'child3',
   data() { 
     return {
-        radio:"116.404, 39.915"
+        radio:"116.404, 39.915",
+        
     }
   },
   mounted(){
@@ -20,7 +21,8 @@ export default {
   methods:{
     radiosChange3(){
         this.$emit("listenToChild3Event",this.radio)
-        //console.log(this.radio)
+        // console.log(this.radio)
+        
     }
   }
 

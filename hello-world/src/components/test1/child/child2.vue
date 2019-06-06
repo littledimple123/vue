@@ -1,8 +1,8 @@
 <template>
   <div class="child2">
       <div>这是child2组件</div>
-      <el-radio v-model="radio" label="5" @change="radiosChange2">5公里</el-radio>
-       <el-radio v-model="radio" label="10" @change="radiosChange2">10公里</el-radio>
+      <el-radio v-model="radio" label="1" @change="radiosChange2">1公里</el-radio>
+      <el-radio v-model="radio" label="10" @change="radiosChange2">10公里</el-radio>
   </div>
 </template>
 
@@ -11,7 +11,7 @@ export default {
   name: 'child2',
   data() { 
     return {
-        radio:'5'
+        radio:'1'
     }
   },
   mounted(){
