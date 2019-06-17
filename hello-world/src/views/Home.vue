@@ -1,5 +1,6 @@
 <template>
-  <div class="home">        
+  <div class="home">  
+    <input @blur="load1" ref='ipt' placeholder="请输入汉字"/>      
     <HelloWorld v-bind:msg='msg1'/>
     <test1/>    
     <test2/>
@@ -28,6 +29,12 @@ export default {
     test2,
     maptest
     //testBaiduMap
+  },
+  mothods:{
+    load1(){
+      debugger;
+      console.log(pinpin(this.$refs.ipt.value))
+    }
   }
 }
 </script>
