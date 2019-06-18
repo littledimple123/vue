@@ -1,6 +1,6 @@
 <template>
   <div class="home">  
-    <input @blur="load1" ref='ipt' placeholder="请输入汉字"/>      
+    <input @blur="load1()" ref='ipt' placeholder="请输入汉字"/>      
     <HelloWorld v-bind:msg='msg1'/>
     <test1/>    
     <test2/>
@@ -16,6 +16,8 @@ import test1 from '@/components/test1/test1'
 import test2 from '@/components/test1/test2'
 //import testBaiduMap from '@/components/test1/testBaiduMap'
 import maptest from '@/components/test1/maptest'
+import pinyin from '../../node_modules/js-pinyin/index'
+
 export default {
   name: 'home',
   data(){
@@ -30,10 +32,10 @@ export default {
     maptest
     //testBaiduMap
   },
-  mothods:{
-    load1(){
-      debugger;
-      console.log(pinpin(this.$refs.ipt.value))
+  methods:{
+    load1(){   
+      console.log(pinyin.getFullChars(this.$refs.ipt.value))
+      console.log(pinyin.getCamelChars(this.$refs.ipt.value))
     }
   }
 }

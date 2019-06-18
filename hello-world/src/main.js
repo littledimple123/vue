@@ -6,9 +6,7 @@ import VCharts from 'v-charts'
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 import axios from 'axios'
-import pinyin from 'pinyin'
 
-Vue.use(pinyin)
 
 Vue.prototype.axios = axios
 
