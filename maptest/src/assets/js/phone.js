@@ -1,5 +1,5 @@
  function validatePhone(value){
-     //debugger;
+   
     if (value.length ==0 || value==undefined || value=='') {
         //return new Error('请输入手机号');
         console.log('请输入手机号')
